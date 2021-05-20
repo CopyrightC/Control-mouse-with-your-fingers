@@ -10,6 +10,7 @@ draw = mp.solutions.drawing_utils
 prev = 0
 curr = 0
 while True:
+    
     bool, img = cam.read()
     newimg = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
     res = hands.process(newimg)
