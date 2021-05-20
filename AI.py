@@ -8,6 +8,7 @@ ctrl_mouse = Controller()
 
 width = GetSystemMetrics(0)
 height = GetSystemMetrics(1)
+
 cam = cv2.VideoCapture(0)
 h= 480
 w= 640
@@ -20,7 +21,7 @@ plocX, plocY = 0,0
 clocX , clocY=  0,0
 curr = 0
 prev = 0
-
+fingerup = False
 while True:
 
     bool , img = cam.read()
@@ -32,7 +33,7 @@ while True:
         fingers = detector.fingersUp()
         if fingers[1] == 1 and fingers[2] == 0:
             cv2.rectangle(img,(BOUND,BOUND),(w-BOUND,h-BOUND),(255,0,255),2)
-           
+            fingerup = False
             x3 = np.interp(x1,(BOUND,w-BOUND),(0,width))
             y3 = np.interp(y1,(BOUND,h-BOUND),(0,height))
 
@@ -43,10 +44,13 @@ while True:
         cv2.circle(img ,(x1,y1),15,(255,0,255),cv2.FILLED)
 
         if fingers[1] == 1 and fingers[2] ==1:
-            leng , img , info = detector.finddis(8,12,img)
-            if leng < 45:
-                ctrl_mouse.press(Button.left)
-                ctrl_mouse.release(Button.left)
+            if not fingerup:
+                leng , img , info = detector.finddis(8,12,img)
+                if leng < 45:
+                    ctrl_mouse.press(Button.left)
+                    ctrl_mouse.release(Button.left)
+                    fingerup = True
+
     curr = time.time()
     fps = 1/(curr-prev)
     prev = curr

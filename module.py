@@ -21,6 +21,7 @@ class HandsAI:
         self.hands = self.xhands.Hands(self.mode,self.max,self.de,self.tr)
         self.draw = mp.solutions.drawing_utils
         self.tipIds = [4, 8, 12, 16, 20]
+        
     def detect_hands(self,img,bool=True):
 
         newimg = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
