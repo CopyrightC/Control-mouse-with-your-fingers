@@ -15,4 +15,4 @@ python AI.py
 ```
 
 # How do you use this?
-You can move your cursor by moving your index finger , right click by lifting up your index and middle finger.
+You can move your cursor by moving your index finger , right click by lifting up your index and middle finger(Note : Distance between the index and middle finger should not be much (>45px))
