@@ -35,12 +35,14 @@ class HandsAI:
 
         lms = []
         if self.res.multi_hand_landmarks:
-            handnum = [self.res.multi_hand_landmarks[num]]
+            handnum = self.res.multi_hand_landmarks[num]
             for index, mark in enumerate(handnum.landmark):
                 h,w,c = img.shape
                 cx,cy = int(mark.x * w) , int(mark.y * h) 
+                lms.append([index,cx,cy])
                 if index == 8:
-                    cv2.circle(img,(cx,cy),15,(255,0,255),cv2.FILLED)
+                    if draw:
+                        cv2.circle(img,(cx,cy),15,(255,0,255),cv2.FILLED)
         return lms
 
 def main():
@@ -52,6 +54,9 @@ def main():
     while True:
         bool, img = cam.read()
         img = ai.detect_hands(img)
+        li = ai.postions(img)
+        if len(li) != 0:
+            print(li[4])
         curr = time.time()
         fps = 1/(curr-prev)
         prev = curr
@@ -59,6 +64,6 @@ def main():
         
         cv2.imshow("IMAGE",img)
         cv2.waitKey(1)
-        
+
 if __name__ == "__main__":
     main()
