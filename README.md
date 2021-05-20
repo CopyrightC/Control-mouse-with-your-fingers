@@ -1,11 +1,12 @@
 # Control-mouse-with-your-fingers
 
 Tired of controlling your cursor with your mouse?
-With the help of this repo, you'll be able to control it with the help your fingers
+With the help of this repo, you'll be able to control it with the help of your fingers
 
 # How to I run this on my machine
 
 Open up your terminal and enter the following sequence of commands :
+
 ```
 git clone https://github.com/SATAN01/Control-mouse-with-your-fingers
 cd Control-mouse-with-your-fingers
